@@ -4,6 +4,12 @@ public class Question {
     private int mTextResId;
     private boolean mAnswerTrue;
 
+    public Question (int textResId, boolean answerTrue) {
+        mAnswerTrue = answerTrue;
+        mTextResId = textResId;
+
+    }
+
     public int getTextResId() {
         return mTextResId;
     }
@@ -21,10 +27,5 @@ public class Question {
         mAnswerTrue = answerTrue;
     }
 
-    public Question (int textResId, boolean answerTrue) {
-        mAnswerTrue = answerTrue;
-        mTextResId = textResId;
-
-    }
 
 }
