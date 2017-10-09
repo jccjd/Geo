@@ -5,15 +5,15 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
-        tools:context="com.example.lenovo.myapplication.GeoQuiz">
+        tools:context="com.example.lenovo.myapplication.GeoQuiz" android:orientation="vertical"
+        android:baselineAligned="false">
 
 
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:padding="24dp"
-              android:text="@string/app_name"
+              android:text="@string/"
     />
     <LinearLayout
             android:orientation="horizontal"
@@ -23,12 +23,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="FALSE"
         />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="TRUE"
         />
 
     </LinearLayout>
