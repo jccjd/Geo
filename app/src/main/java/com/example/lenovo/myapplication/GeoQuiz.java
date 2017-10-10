@@ -28,6 +28,18 @@ public class GeoQuiz extends AppCompatActivity {
         mQuestionTextView.setText(question);
     }
 
+
+    private void checkAnswer(boolean userPressedTrue) {
+        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+        int messageResId = 0;
+        if (userPressedTrue == answerIsTrue) {
+            messageResId = R.string.correct_toast;
+        } else {
+            messageResId = R.string.incorrect_toast;
+        }
+        Toast.makeText(this, messageResId,Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,23 +49,27 @@ public class GeoQuiz extends AppCompatActivity {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
 
-
-        mFalseButton = (Button)findViewById(R.id.false_button);
-
-
         /*匿名内部类的两大好处
         *   1.因为匿名内部类的可以在同一处实现监听器方法，代码清晰可读
         *   2.事件监听器一般只在同一处使用，使匿名内部类可以避免不必要的命名类的实现
         * */
+        mTrueButton = (Button)findViewById(R.id.true_button);
+        mTrueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAnswer(true);
+            }
+        });
+
+        mFalseButton = (Button)findViewById(R.id.false_button);
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Does nothing yet,but soon!
-                Toast.makeText(GeoQuiz.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
-
+                checkAnswer(false);
             }
         });
-        mTrueButton = (Button)findViewById(R.id.true_button);
+
         mnextButton = (Button) findViewById(R.id.next_button);
         mnextButton.setOnClickListener(new View.OnClickListener() {
             @Override
