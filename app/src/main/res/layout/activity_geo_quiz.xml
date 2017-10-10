@@ -36,10 +36,10 @@
     <Button
             android:id="@+id/next_button"
             android:layout_width="wrap_content"
+            android:width="46dp"
+            android:height="26dp"
             android:layout_height="wrap_content"
-            android:text="@string/next_button"
-            android:drawableRight="@drawable/qw1"
-            android:drawablePadding="4dp"
+            android:drawableRight="@drawable/qw"
 
     />
 </LinearLayout>
