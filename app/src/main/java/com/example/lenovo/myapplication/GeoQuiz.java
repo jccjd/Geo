@@ -4,13 +4,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class GeoQuiz extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
+    private Button mnextButton;
+    private TextView mQuestionTextView;
 
+    private Question[] mQuestionBank = new Question[] {
+            new Question(R.string.question_africa,true)
+
+    };
 
 
     @Override
