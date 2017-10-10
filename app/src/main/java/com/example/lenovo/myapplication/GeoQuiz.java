@@ -12,6 +12,7 @@ public class GeoQuiz extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mnextButton;
+    private Button mprevButton;
     private TextView mQuestionTextView;
 
     private Question[] mQuestionBank = new Question[] {
@@ -53,6 +54,17 @@ public class GeoQuiz extends AppCompatActivity {
         *   1.因为匿名内部类的可以在同一处实现监听器方法，代码清晰可读
         *   2.事件监听器一般只在同一处使用，使匿名内部类可以避免不必要的命名类的实现
         * */
+        mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
+        mQuestionTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                updataQuestion();
+            }
+        });
+
+
+
         mTrueButton = (Button)findViewById(R.id.true_button);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +86,22 @@ public class GeoQuiz extends AppCompatActivity {
         mnextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                updataQuestion();
+
+                    mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                    updataQuestion();
+
+            }
+        });
+        mprevButton = (Button)findViewById(R.id.prev_button);
+        mprevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCurrentIndex < 1) {
+                    //do nothing
+                } else {
+                    mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
+                    updataQuestion();
+                }
             }
         });
         updataQuestion();
