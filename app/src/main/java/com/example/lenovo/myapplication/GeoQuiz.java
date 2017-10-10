@@ -2,6 +2,7 @@ package com.example.lenovo.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -9,6 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class GeoQuiz extends AppCompatActivity {
+
+    private static final String TAG = "GeoQuiz";
+
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -45,7 +49,10 @@ public class GeoQuiz extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG,"onCreate(Bundle) called");
         setContentView(R.layout.activity_geo_quiz);
+
+
 
         mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
         int question = mQuestionBank[mCurrentIndex].getTextResId();
