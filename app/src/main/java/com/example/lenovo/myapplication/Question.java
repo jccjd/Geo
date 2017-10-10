@@ -8,6 +8,7 @@ public class Question {
         mAnswerTrue = answerTrue;
         mTextResId = textResId;
 
+
     }
 
     public int getTextResId() {

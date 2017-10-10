@@ -23,11 +23,24 @@ public class GeoQuiz extends AppCompatActivity {
     };
     private int mCurrentIndex = 0;
 
+    private void updataQuestion() {
+        int question = mQuestionBank[mCurrentIndex].getTextResId();
+        mQuestionTextView.setText(question);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geo_quiz);
+
+        mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
+        int question = mQuestionBank[mCurrentIndex].getTextResId();
+        mQuestionTextView.setText(question);
+
+
         mFalseButton = (Button)findViewById(R.id.false_button);
+
+
         /*匿名内部类的两大好处
         *   1.因为匿名内部类的可以在同一处实现监听器方法，代码清晰可读
         *   2.事件监听器一般只在同一处使用，使匿名内部类可以避免不必要的命名类的实现
@@ -41,5 +54,14 @@ public class GeoQuiz extends AppCompatActivity {
             }
         });
         mTrueButton = (Button)findViewById(R.id.true_button);
+        mnextButton = (Button) findViewById(R.id.next_button);
+        mnextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                updataQuestion();
+            }
+        });
+        updataQuestion();
     }
 }
