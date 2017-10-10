@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,8 +12,8 @@ public class GeoQuiz extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
-    private Button mnextButton;
-    private Button mprevButton;
+    private ImageButton mnextButton;
+    private ImageButton mprevButton;
     private TextView mQuestionTextView;
 
     private Question[] mQuestionBank = new Question[] {
@@ -82,7 +83,7 @@ public class GeoQuiz extends AppCompatActivity {
             }
         });
 
-        mnextButton = (Button) findViewById(R.id.next_button);
+        mnextButton = (ImageButton) findViewById(R.id.next_button);
         mnextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +93,7 @@ public class GeoQuiz extends AppCompatActivity {
 
             }
         });
-        mprevButton = (Button)findViewById(R.id.prev_button);
+        mprevButton = (ImageButton)findViewById(R.id.prev_button);
         mprevButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
