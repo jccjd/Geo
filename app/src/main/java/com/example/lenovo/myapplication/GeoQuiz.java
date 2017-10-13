@@ -1,5 +1,6 @@
 package com.example.lenovo.myapplication;
 
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 public class GeoQuiz extends AppCompatActivity {
 
     private static final String TAG = "GeoQuiz";
+    private static final String KEY_INDEX = "index";
 
 
     private Button mTrueButton;
@@ -113,6 +115,16 @@ public class GeoQuiz extends AppCompatActivity {
             }
         });
         updataQuestion();
+        if (savedInstanceState != null) {
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX,0);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG,"onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX,mCurrentIndex);
     }
 
     @Override
