@@ -21,7 +21,7 @@ public class GeoQuiz extends AppCompatActivity {
     private ImageButton mnextButton;
     private ImageButton mprevButton;
     private TextView mQuestionTextView;
-
+    private Button mCheatButton;
     private Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_africa,false),
             new Question(R.string.question_mideast,false),
@@ -115,6 +115,15 @@ public class GeoQuiz extends AppCompatActivity {
             }
         });
         updataQuestion();
+
+        mCheatButton = (Button)findViewById(R.id.cheat_button);
+        mCheatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Start CheatActivity
+            }
+        });
+
         if (savedInstanceState != null) {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX,0);
         }
