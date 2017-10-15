@@ -9,7 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class CheatActivity extends AppCompatActivity {
-    private static final String EXTRA_ANSWER_IS__TRUE = "com.bignerdranch.android.geoquiz.answer_is_true";
+
+    public static final String EXTRA_ANSWER_IS_TRUE =
+            "com.bignerdranch.andriod.geoquiz.answer_is_true";
+
+    public static final String EXTRA_ANSWER_SHOWN =
+            "com.bignerdranch.andriod.geoquiz.answer_shown";
 
     private boolean mAnswerIsTrue;
     private Button mShowAnswer;
@@ -17,8 +22,13 @@ public class CheatActivity extends AppCompatActivity {
 
     public static Intent newIntent(Context packageContext, boolean answerIsTrue) {
         Intent i = new Intent(packageContext, CheatActivity.class);
-        i.putExtra(EXTRA_ANSWER_IS__TRUE,answerIsTrue);
+        i.putExtra(EXTRA_ANSWER_IS_TRUE,answerIsTrue);
         return i;
+    }
+
+    public static boolean wasAnswerShown(Intent result) {
+        return result.getBooleanExtra(EXTRA_ANSWER_IS_TRUE,false);
+
     }
 
     @Override
@@ -26,7 +36,7 @@ public class CheatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
 
-        mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS__TRUE,false);
+        mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE,false);
         mAnswerTextView = (TextView) findViewById(R.id.answer_text_view);
         mShowAnswer = (Button) findViewById(R.id.show_answer_button);
         mShowAnswer.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +47,14 @@ public class CheatActivity extends AppCompatActivity {
                 } else {
                     mAnswerTextView.setText(R.string.false_button);
                 }
+
+                setAnswerResult(true);
             }
         });
+    }
+    private void setAnswerResult(boolean isAnswerShown) {
+        Intent data = new Intent();
+        data.putExtra(EXTRA_ANSWER_SHOWN,isAnswerShown);
+        setResult(RESULT_OK,data);
     }
 }
