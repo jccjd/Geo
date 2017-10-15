@@ -15,7 +15,7 @@ public class GeoQuiz extends AppCompatActivity {
 
     private static final String TAG = "GeoQuiz";
     private static final String KEY_INDEX = "index";
-
+    public static final int REQUEST_CODE_CHEAT = 0;
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -124,7 +124,7 @@ public class GeoQuiz extends AppCompatActivity {
                 //Start CheatActivity
                 boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
                 Intent i = CheatActivity.newIntent(GeoQuiz.this,answerIsTrue);
-                startActivity(i);
+                startActivityForResult(i,REQUEST_CODE_CHEAT);
             }
         });
         updataQuestion();
