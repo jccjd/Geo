@@ -55,7 +55,9 @@ public class GeoQuiz extends AppCompatActivity {
         Log.d(TAG,"onCreate(Bundle) called");
         setContentView(R.layout.activity_geo_quiz);
 
-
+        if (savedInstanceState != null) {
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX,0);
+        }
         mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
@@ -114,25 +116,19 @@ public class GeoQuiz extends AppCompatActivity {
                 }
             }
         });
-        updataQuestion();
 
         mCheatButton = (Button)findViewById(R.id.cheat_button);
         mCheatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Start CheatActivity
-                Intent i = new Intent(GeoQuiz.this,CheatActivity.class);
-                if (i!=null) {
-                    startActivity(i);
-                }else {
-                    Toast.makeText(GeoQuiz.this,"no answer",Toast.LENGTH_SHORT);
-                }
+                boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+                Intent i = CheatActivity.newIntent(GeoQuiz.this,answerIsTrue);
+                startActivity(i);
             }
         });
+        updataQuestion();
 
-        if (savedInstanceState != null) {
-            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX,0);
-        }
     }
 
     @Override
