@@ -1,5 +1,6 @@
 package com.example.lenovo.myapplication;
 
+import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,7 +54,6 @@ public class GeoQuiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG,"onCreate(Bundle) called");
         setContentView(R.layout.activity_geo_quiz);
-
 
 
         mQuestionTextView = (TextView)findViewById(R.id.question_text_view);
@@ -121,6 +121,12 @@ public class GeoQuiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Start CheatActivity
+                Intent i = new Intent(GeoQuiz.this,CheatActivity.class);
+                if (i!=null) {
+                    startActivity(i);
+                }else {
+                    Toast.makeText(GeoQuiz.this,"no answer",Toast.LENGTH_SHORT);
+                }
             }
         });
 
